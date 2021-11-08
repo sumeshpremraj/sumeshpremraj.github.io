@@ -1,6 +1,6 @@
 ---
-title:  "Migrating to a new VPS - notes and command reference"
-date:   2014-08-15 15:40:30 +0530
+title: "Migrating to a new VPS - notes and command reference"
+date: "2014-08-15"
 tags: ["ops"]
 ---
 I tried to setup this site on my VPS late at night. Sleepiness lead to stupidity and I ended up breaking various things on my site, that I couldn't quite restore. Frustration eventually gave way, and I decided to set up a fresh VPS and finally make the move to nginx webserver. Previously, Apache2 tweaked for low memory was used, but it was still poor.

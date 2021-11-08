@@ -1,6 +1,6 @@
 ---
-title:  "Installing Arch Linux from scratch"
-date:   2015-02-21 14:40:30 +0530
+title: "Installing Arch Linux from scratch"
+date: "2015-02-21"
 tags: ["linux"]
 ---
 This is a dump of commands I used, for future reference. Ideallym this should be an Ansible playbook or something to make it automated.

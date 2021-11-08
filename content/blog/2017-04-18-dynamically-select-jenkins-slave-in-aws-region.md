@@ -1,6 +1,6 @@
 ---
 title: "Dynamically pick Jenkins slave in the same AWS region"
-date: 2017-04-18 12:40:30 +0530
+date: "2017-04-18"
 tags: ["ops"]
 ---
 

@@ -1,6 +1,6 @@
 ---
-title:  "Fixing undetected resolution in a multi-monitor Linux setup"
-date:   2015-07-06 06:40:30 +0530
+title: "Fixing undetected resolution in a multi-monitor Linux setup"
+date: "2015-07-06"
 tags: ["linux"]
 ---
 After upgrading to Fedora, I was unable to run my Dell laptop on a dock connected to two monitors properly. One of the screens would refuse to run at its maximum resolution.

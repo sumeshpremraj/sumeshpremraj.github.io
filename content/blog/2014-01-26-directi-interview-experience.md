@@ -1,6 +1,6 @@
 ---
-title:  "Directi interview experience"
-date:   2014-01-26 19:00:30 +0530
+title: "Directi interview experience"
+date: "2014-01-26"
 tags: ["interviews"]
 ---
 
