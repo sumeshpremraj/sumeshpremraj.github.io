@@ -1,5 +1,4 @@
 ---
-layout: post
 title:  "Fixing undetected resolution in a multi-monitor Linux setup"
 date:   2015-07-06 06:40:30 +0530
 tags: ["linux"]
