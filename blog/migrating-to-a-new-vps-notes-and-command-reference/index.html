@@ -1,0 +1,90 @@
+<!doctype html><html lang=en-us>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=author content="Sumesh Premraj">
+<link rel="shortcut icon" type=image/x-icon href=https://sumesh.work/img/favicon.ico>
+<title>Migrating to a new VPS - notes and command reference | Sumesh Premraj's Homepage</title>
+<meta name=description content="I tried to setup this site on my VPS late at night. Sleepiness lead to stupidity and I ended up breaking various things on my site, that I couldn&rsquo;t quite restore. Frustration eventually gave way, and I decided to set up a fresh VPS and finally make the move to nginx webserver. Previously, Apache2 tweaked for low memory was used, but it was still poor.
+VPS migration can be fast and easy when done properly.">
+<link href=https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css rel=stylesheet integrity=sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl crossorigin=anonymous>
+<link rel="preload stylesheet" href=/css/main.min.css as=style>
+<link rel=stylesheet type=text/css href=https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css>
+<link rel=stylesheet type=text/css href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,200bold,400old">
+<link rel=stylesheet href=https://sumesh.work/css/custom.css><!--[if lt IE 9]><script src=https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js></script>
+<script src=https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js></script><![endif]-->
+<script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','G-SWFN0GVHN6','auto'),ga('send','pageview'))</script>
+<script async src=https://www.google-analytics.com/analytics.js></script>
+</head>
+<body>
+<div id=content>
+<div class="container mb-3">
+<nav class="navbar navbar-expand-lg">
+<div class=container-fluid>
+<a class=navbar-brand href=https://sumesh.work/>
+<i class="fa fa-home"></i> Sumesh Premraj
+</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbar aria-controls=navbar>
+<i class="fa fa-bars"></i>
+</button>
+<div id=navbar class="collapse navbar-collapse">
+<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+<li class=nav-item>
+<li><a class=nav-link href=/blog/>BLOG</a></li>
+</li>
+<li class=nav-item>
+<li><a class=nav-link href=/projects/>PROJECTS</a></li>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</nav>
+<div class=container>
+<h3 class=mt-3><b><a href=https://sumesh.work/blog/migrating-to-a-new-vps-notes-and-command-reference/>Migrating to a new VPS - notes and command reference</a></b></h3>
+<div class="blog-title my-4">
+<h6>
+August 15, 2014
+&nbsp;&nbsp;
+<span class="badge bg-success">ops</span>
+</h6>
+</div>
+<div class=panel>
+<div class=panel-body>
+<div class=blogpost>
+<p>I tried to setup this site on my VPS late at night. Sleepiness lead to stupidity and I ended up breaking various things on my site, that I couldn&rsquo;t quite restore. Frustration eventually gave way, and I decided to set up a fresh VPS and finally make the move to nginx webserver. Previously, Apache2 tweaked for low memory was used, but it was still poor.</p>
+<p>VPS migration can be fast and easy when done properly. This was my second time, but I didn&rsquo;t save links or references from last time, so I had to figure out a lot of things by trial and error and reading up all over again. I&rsquo;m writing this for future reference (when I inevitably screw up things :P ), but here&rsquo;s hoping others will find it useful too. Feel free to ask any questions, I&rsquo;ll try to help.</p>
+<h3 id=setting-up-the-new-vps>Setting up the new VPS</h3>
+<p>I&rsquo;m using a Debian 7 &lsquo;Wheezy&rsquo; 32 bit 512 MB VPS. Why Debian? It has a lower footprint than Ubuntu, and is suitable for low memory VPS.</p>
+<p>Why nginx? nginx is known to be fast and capable of more concurrent connections. In the rare occasions when traffic spikes, I do not want to be caught off guard. WordPress works well with nginx now, so there&rsquo;s no real reason to stay on Apache.</p>
+<p>Looking for an affordable VPS provider? I set this up on a <a href="https://www.digitalocean.com/?refcode=7f10667e7318">Digital Ocean</a> VPS. If you sign up with my affiliate link, I&rsquo;ll get a couple of months of free hosting, but I&rsquo;d recommend them even without that. They&rsquo;re awesome (so far).</p>
+<p>They are one of the fastest growing cloud VPS providers, and start at $5. They also have detailed tutorials, which I found helpful. Affordable and decent support, and they&rsquo;re active on <a href=https://twitter.com/digitalocean>Twitter</a> too. They have an API, and many developers have made apps for iOS and Android.</p>
+<p>Chris Black has a detailed tutorial to <a href=http://thatchrisblack.com/2013/06/wordpress-debian-wheezy-nginx-and-you/>setup LEMP stack</a> (nginx, PHP, MySQL) and WordPress.</p>
+<p>Alternatively, follow one of the <a href=https://www.digitalocean.com/community/articles/initial-server-setup-with-ubuntu-12-04>guides at Digital Ocean</a> for a different combination of Linux flavor and software stack. The instructions aren&rsquo;t tailored for Digital Ocean - they work well with any VPS.</p>
+<p>Now, follow the SFTP setup from <a href=https://www.digitalocean.com/community/articles/how-to-launch-your-site-on-a-new-ubuntu-12-04-server-with-lamp-sftp-and-dns>this article</a>. That link is for Ubuntu 12.04, but it works for Debian 7 too.</p>
+<p>Next, set up SSH keys which is a more secure and convenient authentication than passwords. Also disable root login and passwords by editing /etc/ssh/sshd_config (PermitRootLogin no).</p>
+<p>I started <a href=http://weavervsworld.com/docs/other/passprotect.html>password protecting wp-admin</a> (with htpasswd) to keep out hacks thru frequent plugin vulnerabilities and wp-admin. Haven&rsquo;t had a hack since, touchwood.</p>
+<h3 id=migrating-data>Migrating data</h3>
+<p>You can use either the powerful rsync, or move things by hand. I prefer the latter because of fine grained control. Also, I did not need some of the data from the old VPS, so a manual move made sense. But this is not as manual as you&rsquo;d think - a few commands and you&rsquo;re done.</p>
+<p>Backup <a href=http://www.thegeekstuff.com/2008/09/backup-and-restore-mysql-database-using-mysqldump/>databases with mysqldump</a> on your old VPS.</p>
+<p>To migrate files, first create a tar file (which is a container). Keep adding files to it, and when you&rsquo;re done, gzip it (<a href=http://www.tecmint.com/18-tar-command-examples-in-linux/>tar reference</a>, <a href=http://www.computerhope.com/unix/gzip.htm>gzip reference</a>)</p>
+<p>Here&rsquo;s how I did it: starting from domain root, add all folders. So, my tarball contained , etc. Don&rsquo;t forget to include the previously created MySQL dump.</p>
+<p>Transfer the archive to new VPS, move it to the domain root and unzip it. Directory structure will be intact, so you don&rsquo;t have to change anything.</p>
+<p>Move the archive from old VPS to new VPS quickly with secure copy over SSH, aka SCP (<a href="http://www.ozpersia.net/blog/?p=20">reference</a>).</p>
+</div>
+</div>
+<div class=disqus>
+</div>
+</div>
+</div>
+</div>
+<footer class=footer>
+<div class=container>
+<div class=text-muted>&copy; All rights reserved. Powered by <a href=https://gohugo.io/>Hugo</a> and
+<a href=http://www.github.com/nurlansu/hugo-sustain/>sustain</a> with ♥</div>
+</div>
+</footer>
+<script src=https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js integrity=sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG crossorigin=anonymous></script>
+</body>
+</html>

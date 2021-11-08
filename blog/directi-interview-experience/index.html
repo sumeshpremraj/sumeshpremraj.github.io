@@ -1,0 +1,95 @@
+<!doctype html><html lang=en-us>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=author content="Sumesh Premraj">
+<link rel="shortcut icon" type=image/x-icon href=https://sumesh.work/img/favicon.ico>
+<title>Directi interview experience | Sumesh Premraj's Homepage</title>
+<meta name=description content="Directi, one of the highest paying Indian companies(with a tough interview process to match) had a recruitment drive on our campus (MSRIT, Bangalore) for the post of operations engineer - which is a mix of coding, deployment, monitoring and troubleshooting. A few friends asked what preparation I did, questions asked in the interview etc, so I&rsquo;m writing it down here instead of answering individually. I hope it will help you in preparing for interviews in general, or Directi in particular :)">
+<link href=https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css rel=stylesheet integrity=sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl crossorigin=anonymous>
+<link rel="preload stylesheet" href=/css/main.min.css as=style>
+<link rel=stylesheet type=text/css href=https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css>
+<link rel=stylesheet type=text/css href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,200bold,400old">
+<link rel=stylesheet href=https://sumesh.work/css/custom.css><!--[if lt IE 9]><script src=https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js></script>
+<script src=https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js></script><![endif]-->
+<script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','G-SWFN0GVHN6','auto'),ga('send','pageview'))</script>
+<script async src=https://www.google-analytics.com/analytics.js></script>
+</head>
+<body>
+<div id=content>
+<div class="container mb-3">
+<nav class="navbar navbar-expand-lg">
+<div class=container-fluid>
+<a class=navbar-brand href=https://sumesh.work/>
+<i class="fa fa-home"></i> Sumesh Premraj
+</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbar aria-controls=navbar>
+<i class="fa fa-bars"></i>
+</button>
+<div id=navbar class="collapse navbar-collapse">
+<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+<li class=nav-item>
+<li><a class=nav-link href=/blog/>BLOG</a></li>
+</li>
+<li class=nav-item>
+<li><a class=nav-link href=/projects/>PROJECTS</a></li>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</nav>
+<div class=container>
+<h3 class=mt-3><b><a href=https://sumesh.work/blog/directi-interview-experience/>Directi interview experience</a></b></h3>
+<div class="blog-title my-4">
+<h6>
+January 26, 2014
+&nbsp;&nbsp;
+<span class="badge bg-success">interviews</span>
+</h6>
+</div>
+<div class=panel>
+<div class=panel-body>
+<div class=blogpost>
+<p>Directi, one of the highest paying Indian companies(with a tough interview process to match) had a recruitment drive on our campus (MSRIT, Bangalore) for the post of operations engineer - which is a mix of coding, deployment, monitoring and troubleshooting. A few friends asked what preparation I did, questions asked in the interview etc, so I&rsquo;m writing it down here instead of answering individually. I hope it will help you in preparing for interviews in general, or Directi in particular :)</p>
+<p>I did some reading up online about the company, and found that it had multiple verticals like web hosting, domain registration, advertising, communication tools etc. Read a few employee reviews and saw that it was a growing company with its startup DNA mostly intact. This excited me because I talked to seniors in various companies and the consensus was that startups make you work hard but you also get to learn and grow fast.</p>
+<p>The hiring process had the following rounds - aptitude, online coding, and 3 or more rounds of interviews, each being an elimination round.</p>
+<h1 id=aptitude-30-mins>Aptitude (30 mins)</h1>
+<p>Absolutely loved the fact that questions were all technical - a mix of Unix/Linux, networking, OS and C questions. Scoring was +4/-1 per question, so I answered only 18/30 questions I was sure of. This round was probably to pick out the technically competent candidates.</p>
+<h1 id=coding-60-90-mins>Coding (60-90 mins)</h1>
+<p>We were asked to write an <a href=http://en.wikipedia.org/wiki/Nmap>nmap</a> clone. They showed the nmap output for a local test server, and we had to replicate the functionality. Language could be any of C, Java, Python or Ruby (in line with the company&rsquo;s technology-agnostic philosophy). The official documentation for each language was uploaded to the local server and we were allowed to use only this for reference.</p>
+<p>I read the C docs and wrote some code, but didn&rsquo;t get it working. I have been learning Python recently, and tried reading Python docs and soon found the functions needed for the job. Finished it in less than half hour (in addition to the half hour I spent attempting it in C).</p>
+<p>Doing this round in Python caught the eye of the recruiter, which helped in later rounds :) He also appreciated how I used a built-in function to map the port number to service name in just one line instead of doing it manually.</p>
+<h3 id=interviews-technical-round-1>Interviews: Technical round #1</h3>
+<p>This round was mostly basic tech questions (that you can prepare from engineering texts) - OS, database, internet, Linux (including a discussion on Linux distros, file systems etc), networking. Answered most questions and admitted to not knowing the rest (instead of guessing and wasting time).</p>
+<h3 id=technical-round-2>Technical round #2</h3>
+<p>This round was mostly focused on internet technologies - types of web servers, databases, redundancy, high availability, scaling, DNS, data center designs, clustering etc.</p>
+<p>There were many architectural decision questions: what RAID for high throughput high availability storage (RAID 10, RAID 4 or 5 depending on the use case), ideal RAID for a database, web application scaling techniques - using separate DB and app server, using multiple app servers, load balancers (Varnish), using Nginx or similar as a static file server to bypass the dynamic web server, switching entirely to Nginx or alternate servers, CDNs etc.</p>
+<p>You have to be well versed in the practical aspects rather than focus on mugging up a few questions, as they could ask you any of a million questions from these above topics. Here&rsquo;s an anecdote: I didn&rsquo;t remember the full form of BIOS and RAID (blame the nerves), but explained the concepts well. That was enough for the interviewer.</p>
+<p>In each round, I was asked about projects and extracurriculars. Saw my published WordPress and Ghost themes and was asked about that too, and then had a discussion about this new CMS called <a href=https://ghost.org/>Ghost</a>.</p>
+<p>Tip: having code on github always helps.</p>
+<h3 id=interview-3-managerialhr>Interview #3 (managerial/HR)</h3>
+<p>I was honest about both my strengths and concerns. These interviewers must have seen hundreds of students give curated answers which feel completely artificial and made up, so I went the exact opposite route. Just saying &ldquo;I am hardworking, passionate, intelligent&rdquo; etc is not how you do it - you have to convince them with examples and anecdotes from your own life.</p>
+<p>I talked about my passions, how I have always wanted a job around my interests, wanting to avoid mid life crisis and being unhappy like so many highly paid but overworked professionals are and being a self-taught, DIY person.</p>
+<p>Published a blog, wanted to customize design so I learnt HTML/CSS and some Photoshop design, moved to my own site, wanted a better server so I learnt to configure a VPS, switched from Apache to Nginx because of traffic etc. I have been breaking and then figuring out how to fix things since I first used my grandfather&rsquo;s new desktop with Windows 98 back in 1999 (broke that and got an earful :P ). Started installing Linux distros (starting from Ubuntu 6.10 when I was 14 years old) and corrupted the Windows partition on my desktop, then had to learn to install Windows and Linux dual boot. Rooted and loaded custom ROMs on each of my Android phones within days of purchase, etc.</p>
+<p>At the end of each round, they ask if you have any questions. This is as much about checking whether you&rsquo;re eager to work for the company as it is to clear your doubts. I asked about the job profile and performance parameters/career growth in round 1, tools used+role of open source+how open the company is to its employees contributing back to open source in round 2, and why the senior executive is still excited to work in round 3 respectively. Like everything else about this interview, these questions were not planned at all - but doubts I had. Looking back, they align nicely with the theme of each round.</p>
+<p>In the last round, I was asked what I was really proud of, and I answered about earning since I was 17 and realizing money isn&rsquo;t that important. Beyond basic needs like a roof over your head, clothes and food, money doesn&rsquo;t really have as much value as we think it does. I also saved up most of my earnings for a difficult times in the future rather than spend it mindlessly on useless things.</p>
+<p>I read <a href=http://www.reddit.com/r/IAmA/comments/1w1y5m/we_are_the_google_site_reliability_engineering/>this Google SRE AMA on Reddit</a> just now and I realized that many of the best companies (both large ones and smaller startups) look for attitude over aptitude.</p>
+<p>Skills can be taught, technical subjects can be read up but the curiosity to learn, take things apart, break and fix them cannot be taught. This is useful in any job but particularly relevant for this one. Read through all the Google employee comments on the above Reddit AMA link, there are so many gems in comments that help in the interview process for any job.</p>
+</div>
+</div>
+<div class=disqus>
+</div>
+</div>
+</div>
+</div>
+<footer class=footer>
+<div class=container>
+<div class=text-muted>&copy; All rights reserved. Powered by <a href=https://gohugo.io/>Hugo</a> and
+<a href=http://www.github.com/nurlansu/hugo-sustain/>sustain</a> with ♥</div>
+</div>
+</footer>
+<script src=https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js integrity=sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG crossorigin=anonymous></script>
+</body>
+</html>

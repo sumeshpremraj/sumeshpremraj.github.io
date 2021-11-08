@@ -1,0 +1,103 @@
+<!doctype html><html lang=en-us>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=author content="Sumesh Premraj">
+<link rel="shortcut icon" type=image/x-icon href=https://sumesh.work/img/favicon.ico>
+<title>Dynamically pick Jenkins slave in the same AWS region | Sumesh Premraj's Homepage</title>
+<meta name=description content="As part of efforts to shore up security, I worked on moving from a single Jenkins master to a distributed setup with a slave in each AWS region. This might help if you use a cloud provider from Amazon, Google GCP or similar, and want to do the same.
+Jenkins has a great plugin ecosystem, and we can use the Groovy Label Assignment plugin to make Jenkins pick the local slave automatically.">
+<link href=https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css rel=stylesheet integrity=sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl crossorigin=anonymous>
+<link rel="preload stylesheet" href=/css/main.min.css as=style>
+<link rel=stylesheet type=text/css href=https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css>
+<link rel=stylesheet type=text/css href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,200bold,400old">
+<link rel=stylesheet href=https://sumesh.work/css/custom.css><!--[if lt IE 9]><script src=https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js></script>
+<script src=https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js></script><![endif]-->
+<script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','G-SWFN0GVHN6','auto'),ga('send','pageview'))</script>
+<script async src=https://www.google-analytics.com/analytics.js></script>
+</head>
+<body>
+<div id=content>
+<div class="container mb-3">
+<nav class="navbar navbar-expand-lg">
+<div class=container-fluid>
+<a class=navbar-brand href=https://sumesh.work/>
+<i class="fa fa-home"></i> Sumesh Premraj
+</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbar aria-controls=navbar>
+<i class="fa fa-bars"></i>
+</button>
+<div id=navbar class="collapse navbar-collapse">
+<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+<li class=nav-item>
+<li><a class=nav-link href=/blog/>BLOG</a></li>
+</li>
+<li class=nav-item>
+<li><a class=nav-link href=/projects/>PROJECTS</a></li>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</nav>
+<div class=container>
+<h3 class=mt-3><b><a href=https://sumesh.work/blog/dynamically-pick-jenkins-slave-in-the-same-aws-region/>Dynamically pick Jenkins slave in the same AWS region</a></b></h3>
+<div class="blog-title my-4">
+<h6>
+April 18, 2017
+&nbsp;&nbsp;
+<span class="badge bg-success">ops</span>
+</h6>
+</div>
+<div class=panel>
+<div class=panel-body>
+<div class=blogpost>
+<p>As part of efforts to shore up security, I worked on moving from a single Jenkins master to a distributed setup with a slave in each AWS region. This might help if you use a cloud provider from Amazon, Google GCP or similar, and want to do the same.</p>
+<p>Jenkins has a great plugin ecosystem, and we can use the <a href=https://wiki.jenkins-ci.org/display/JENKINS/Groovy+Label+Assignment+plugin>Groovy Label Assignment plugin</a> to make Jenkins pick the local slave automatically. The only problem is that Jenkins is used by each individual/organization differently, so finding the right plugin takes some time. For my particular use case, it took longer to find a plugin than actually set it up :)</p>
+<p>I have a Jenkins build parameter that picks the region for deployment, so I wrote some Groovy code to check the value of this parameter and pick the right slave.</p>
+<ul>
+<li>Install the plugin linked above</li>
+<li>Set up your slaves and add a descriptive label. I used <code>slave-[region]</code></li>
+<li>Create/edit a job, and select the checkbox for <code>Groovy script to restrict where this project can be run</code>.
+Check the value of your build parameter and set the Jenkins slave. For example:</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-groovy data-lang=groovy><span style=color:#66d9ef>switch</span> <span style=color:#f92672>(</span>REGION<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+  <span style=color:#66d9ef>case</span> <span style=color:#e6db74>&#39;us-east-2&#39;</span><span style=color:#f92672>:</span> 
+    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#39;slave-us-east-2&#39;</span><span style=color:#f92672>;</span>
+  <span style=color:#66d9ef>case</span> <span style=color:#e6db74>&#39;eu-west-2&#39;</span><span style=color:#f92672>:</span> 
+    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#39;slave-eu-west-2&#39;</span><span style=color:#f92672>;</span>
+<span style=color:#f92672>}</span>
+</code></pre></div><p>You can also use if-else statements (click the help icon next to the code box for code samples).</p>
+<p>Implementing this allowed me to move all tasks into private networking of the VPC, improving the security and reducing the management overhead (firewalls, SSL certs etc).</p>
+<div class="related-posts mt-4 py-3">
+<h5>Related Posts</h5>
+<div class=row>
+<div class=col-4>
+<h6 style=text-align:right>
+August 15, 2014
+</h6>
+</div>
+<div class=col-8>
+<h6 style=text-align:left>
+<b><a href=/blog/migrating-to-a-new-vps-notes-and-command-reference/>Migrating to a new VPS - notes and command reference</a></b>
+</h6>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class=disqus>
+</div>
+</div>
+</div>
+</div>
+<footer class=footer>
+<div class=container>
+<div class=text-muted>&copy; All rights reserved. Powered by <a href=https://gohugo.io/>Hugo</a> and
+<a href=http://www.github.com/nurlansu/hugo-sustain/>sustain</a> with ♥</div>
+</div>
+</footer>
+<script src=https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js integrity=sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG crossorigin=anonymous></script>
+</body>
+</html>

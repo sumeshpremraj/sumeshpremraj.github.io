@@ -1,0 +1,133 @@
+<!doctype html><html lang=en-us>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=author content="Sumesh Premraj">
+<link rel="shortcut icon" type=image/x-icon href=https://sumesh.work/img/favicon.ico>
+<title>Installing Arch Linux from scratch | Sumesh Premraj's Homepage</title>
+<meta name=description content="This is a dump of commands I used, for future reference. Ideallym this should be an Ansible playbook or something to make it automated.
+There&rsquo;s more than one way to skin a cat, of course, but here&rsquo;s my way:
+ using WiFi throughout the install a system with an existing Linux install I prefer zsh over bash I also prefer GNOME3 for its ease of use, although i3 is pretty nice too  You can read more about my setup and tools I use.">
+<link href=https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css rel=stylesheet integrity=sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl crossorigin=anonymous>
+<link rel="preload stylesheet" href=/css/main.min.css as=style>
+<link rel=stylesheet type=text/css href=https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css>
+<link rel=stylesheet type=text/css href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,200bold,400old">
+<link rel=stylesheet href=https://sumesh.work/css/custom.css><!--[if lt IE 9]><script src=https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js></script>
+<script src=https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js></script><![endif]-->
+<script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','G-SWFN0GVHN6','auto'),ga('send','pageview'))</script>
+<script async src=https://www.google-analytics.com/analytics.js></script>
+</head>
+<body>
+<div id=content>
+<div class="container mb-3">
+<nav class="navbar navbar-expand-lg">
+<div class=container-fluid>
+<a class=navbar-brand href=https://sumesh.work/>
+<i class="fa fa-home"></i> Sumesh Premraj
+</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbar aria-controls=navbar>
+<i class="fa fa-bars"></i>
+</button>
+<div id=navbar class="collapse navbar-collapse">
+<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+<li class=nav-item>
+<li><a class=nav-link href=/blog/>BLOG</a></li>
+</li>
+<li class=nav-item>
+<li><a class=nav-link href=/projects/>PROJECTS</a></li>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</nav>
+<div class=container>
+<h3 class=mt-3><b><a href=https://sumesh.work/blog/installing-arch-linux-from-scratch/>Installing Arch Linux from scratch</a></b></h3>
+<div class="blog-title my-4">
+<h6>
+February 21, 2015
+&nbsp;&nbsp;
+<span class="badge bg-success">linux</span>
+</h6>
+</div>
+<div class=panel>
+<div class=panel-body>
+<div class=blogpost>
+<p>This is a dump of commands I used, for future reference. Ideallym this should be an Ansible playbook or something to make it automated.</p>
+<p>There&rsquo;s more than one way to skin a cat, of course, but here&rsquo;s my way:</p>
+<ul>
+<li>using WiFi throughout the install</li>
+<li>a system with an existing Linux install</li>
+<li>I prefer zsh over bash</li>
+<li>I also prefer GNOME3 for its ease of use, although i3 is pretty nice too</li>
+</ul>
+<p>You can read more about <a href=/blog/my-setup/>my setup</a> and tools I use.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ wifi-menu
+$ fdisk -l
+$ mkfs.ext4 /dev/sdxY
+$ mkswap /dev/sdxY
+$ swapon /dev/sdxY
+$ mount /dev/sdxR /mnt
+$ mkdir -p /mnt/home
+$ nano /etc/pacman.d/mirrorlist
+$ pacstrap -i /mnt base base-devel
+$ genfstab -U -p /mnt &gt;&gt; /mnt/etc/fstab
+$ arch-chroot /mnt /bin/bash
+$ pacman -S zsh vim
+$ nano /etc/locale.gen
+$ locale-gen
+$ echo LANG<span style=color:#f92672>=</span>en_US.UTF-8 &gt; /etc/locale.conf
+$ export LANG<span style=color:#f92672>=</span>en_US.UTF-8
+$ ln -s /usr/share/zoneinfo/Asia/Indian /etc/localtime
+$ hwclock --systohc --utc
+$ echo archlinux &gt; /etc/hostname
+$ vim /etc/pacman.conf <span style=color:#75715e># uncomment multilib repo</span>
+$ pacman -Syu
+$ passwd <span style=color:#75715e># set root password</span>
+$ useradd -m -g users -G wheel,storage,power -s /bin/zsh sumesh <span style=color:#75715e>#</span>
+$ passwd sumesh
+$ pacman -S sudo
+$ EDITOR<span style=color:#f92672>=</span>nano visudo <span style=color:#75715e>#uncomment %wheel</span>
+$ pacman -S grub
+$ grub-install --target<span style=color:#f92672>=</span>i386-pc --recheck /dev/sda
+$ pacman -S os-prober
+$ grub-mkconfig -o /boot/grub/grub.cfg
+$ pacman -S iw wpa_supplicant wpa_actiond
+$ pacman -S xorg-server xorg-server-utils xorg-xinit mesa xf86-video-intel lib32-intel-dri
+$ pacman -S xorg-twm xorg-xclock xterm
+$ startx <span style=color:#75715e># to test drivers</span>
+$ pacman -S gnome gdm
+$ pacman -S xf86-input-synaptics xf86-video-intel alsa-utils pulseaudio
+$ echo <span style=color:#e6db74>&#34;exec gnome-shell&#34;</span> &gt; ~/.xinitrc
+$ echo <span style=color:#e6db74>&#34;[archlinuxfr]
+</span><span style=color:#e6db74>SigLevel = Never
+</span><span style=color:#e6db74>Server = http://repo.archlinux.fr/</span>$arch<span style=color:#e6db74>&#34;</span> &gt;&gt; /etc/pacman.conf
+$ pacman -Sy yaourt <span style=color:#75715e># install packages from AUR</span>
+$ pacman -S vlc terminator guake git mysql apache nginx tmux transmission-gtk gnome-tweak-tool ncdu htop coreutils wget curl postgresql dropbox skype rdesktop xchat gimp zsh quodlibet
+$ yaourt ttf-ms-fonts codecs64 
+$ exit
+$ reboot
+
+$ yaourt -Syu <span style=color:#75715e># Update AUR packages</span>
+$ sudo pacman -Sy <span style=color:#75715e># sync repos</span>
+$ sudo pacman -Syu <span style=color:#75715e># update system</span>
+$ sudo pacman -R <span style=color:#75715e># remove package</span>
+$ sudo pacman -Q <span style=color:#75715e># check for installed package</span>
+</code></pre></div>
+</div>
+</div>
+<div class=disqus>
+</div>
+</div>
+</div>
+</div>
+<footer class=footer>
+<div class=container>
+<div class=text-muted>&copy; All rights reserved. Powered by <a href=https://gohugo.io/>Hugo</a> and
+<a href=http://www.github.com/nurlansu/hugo-sustain/>sustain</a> with ♥</div>
+</div>
+</footer>
+<script src=https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js integrity=sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG crossorigin=anonymous></script>
+</body>
+</html>
