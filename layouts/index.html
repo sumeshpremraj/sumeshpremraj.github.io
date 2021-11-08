@@ -1,0 +1,13 @@
+{{ define "main" }}
+  {{ partial "header" . }}
+
+  <section id="about">
+    <div class="container">
+      <div class="avatar mb-5">
+        <img class="" width="98" height="123" src="{{ .Site.Params.avatar }}" alt="Responsive image">
+      </div>
+      {{ .Content }}
+      {{ partial "social.html" . }}
+    </div>
+  </section>
+{{ end }}

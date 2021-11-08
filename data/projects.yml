@@ -1,0 +1,26 @@
+name: Projects
+source:
+  - icon: fa fa-github
+    name: School of SRE
+    description: An open-source curriculum for aspiring SREs, and also developers who want to learn
+    url: https://github.com/linkedin/school-of-sre
+
+  - icon: fa fa-github
+    name: gcopy
+    description:  Python script to download files from Google Cloud Storage, with support for multithreading
+    url: https://github.com/sumeshpremraj/gcopy
+
+  - icon: fa fa-github
+    name: ops-toolkit
+    description: A set of lean Docker images with some essential debugging and ops tools included
+    url: https://github.com/sumeshpremraj/ops-toolkit
+
+  - icon: fa fa-github
+    name: rundeck-scripts
+    description: Collection of custom scripts for Rundeck, a job scheduler
+    url: https://github.com/sumeshpremraj/rundeck-scripts
+
+  - icon: fa fa-github
+    name: jaeger-all-in-one-kubernetes
+    description: Template to run Jaeger and all its dependencies in a local Kubernetes install for dev/testing purposes
+    url: https://github.com/sumeshpremraj/jaeger-all-in-one-kubernetes

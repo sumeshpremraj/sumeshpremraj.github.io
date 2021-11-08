@@ -1,0 +1,47 @@
+html, body {
+   border-top: 3px solid #226ca8;
+}
+ 
+#about {
+   font-size: 1.2rem;
+}
+  
+.navbar .navbar-brand {
+  color: #666;
+  font-weight: 700;
+}
+.navbar .navbar-brand:hover {
+  color: #000;
+}
+
+ 
+.container a {
+   color: #597fc5;
+   text-decoration: none;
+}
+ 
+.container a:hover {
+   color: #3a5485;
+}
+ 
+.social-links li a {
+   font-size: 20px;
+   color: #000;
+   font-size: 30px;
+   color: #666;
+   padding: 10px;
+   padding-bottom: 4px;
+   transition: all .4s ease;
+}
+ 
+.avatar {
+   padding-top: 3vh;
+}
+ 
+.footer {
+   border-bottom: 5px solid #226ca8;
+}
+
+div.highlight pre {
+   padding: 4px 15px;
+}
