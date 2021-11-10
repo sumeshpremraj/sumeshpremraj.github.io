@@ -1,0 +1,3 @@
+Contact: http://linkedin.com/in/sumeshpremraj/
+Preferred-Languages: en
+Canonical: https://www.sumesh.work/.well-known/security.txt
