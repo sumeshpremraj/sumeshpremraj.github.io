@@ -45,3 +45,9 @@ html, body {
 div.highlight pre {
    padding: 4px 15px;
 }
+
+div.container blockquote {
+   border-left: 10px solid #226ca8;
+   background: #f5f5f5;
+   padding-left: 10px;
+}
