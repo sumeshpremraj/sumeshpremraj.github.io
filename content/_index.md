@@ -6,7 +6,9 @@ I'm **Sumesh Premraj**.
 
 I'm a tinkerer at heart, and I love building reliable large scale systems. 
 
-I have been working on LinkedIn's Site Reliability Engineering team for the past 2 years.
+I am currently working as an SRE on data streaming and ingestion infrastructure for a tech company.
+
+Previously, I worked as an SRE in LinkedIn and Microsoft.
 
 With my colleages at LinkedIn, I co-authored the [School of SRE](http://linkedin.github.io/school-of-sre), an open-source curriculum for aspiring site reliability engineers.
 
