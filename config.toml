@@ -1,4 +1,4 @@
-baseURL = "https://sumesh.work/"
+baseURL = "https://www.sumesh.net/"
 languageCode = "en-US"
 title = "Sumesh Premraj's Homepage"
 # Enable comments by entering your Disqus shortname
@@ -21,7 +21,7 @@ theme = "hugo-sustain"
 
 [params.social]
   Github        = "sumeshpremraj"
-  Email         = "hi@sumesh.work"
+  Email         = "hi@sumesh.net"
   Twitter       = "sumesh"
   LinkedIn      = "sumeshpremraj"
   Stackoverflow = ""
