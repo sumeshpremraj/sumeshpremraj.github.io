@@ -2,10 +2,9 @@
 
 This repo hosts the content for https://sumesh.net
 
-This site is generated with Hugo and hosted on Netlify.
+This site is generated with Hugo and hosted on GitHub Pages.
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/3fcf3964-a47a-410d-ab52-dde250bc9720/deploy-status)](https://app.netlify.com/sites/sumeshnet/deploys)
-
+### Setup
 Init (theme) submodule
 
 ```
